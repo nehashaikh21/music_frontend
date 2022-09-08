@@ -5,9 +5,72 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100% !important;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+audio::-webkit-media-controls-mute-button {
+  display: none;
+}
+
+audio::-webkit-media-controls-panel {
+  background-color: white;
+}
+
+audio::-webkit-media-controls-timeline{
+  display: none;
+}
+
+audio::-webkit-media-controls-current-time-display{
+  display: none;
+}
+
+audio::-webkit-media-controls-time-remaining-display{
+  display: none;
+}
+
+audio::-webkit-media-controls-play-button {
+  background-color: #B1D4E0;
+  border-radius: 50%;
+}
+
+audio::-webkit-media-controls-play-button:hover {
+  background-color: rgba(177,212,224, .7);
+}
+
+audio::-webkit-media-controls-mute-button{
+  display: none;
+}
+
+.sidebar{
+  /* background-color: black !important; */
+  margin-top: 60px !important;
+  background-repeat: repeat-y !important;
+  height: 100% !important;
+  background-attachment: scroll !important;
+  margin-left: -90px !important;
+  
+}
+
+.heart{
+  margin-bottom: 8px !important;
+  width: 22px !important;
+}
+
+.col{
+  padding-left: 62px !important;
+}
+
+h2{
+  padding-left: 200px;
+  padding-top: 20px;
+}
+
+.font-link{
+  font-family: 'Pacifico', cursive !important;
+  color: #db3d44;
 }
