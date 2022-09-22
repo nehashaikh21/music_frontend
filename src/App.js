@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import Songs from "./Songs";
-import Navbar from "./Navbar";
+import Songs from "./components/Songs";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (

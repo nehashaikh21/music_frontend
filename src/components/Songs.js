@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
-import Sidebar from './components/Sidebar';
+import Sidebar from './Sidebar';
 import Heart from "react-heart";
 import StickyBox from "react-sticky-box";
 
