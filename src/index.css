@@ -74,3 +74,9 @@ h2{
   font-family: 'Pacifico', cursive !important;
   color: #db3d44;
 }
+
+.logo{
+  font-family: 'Pacifico', cursive !important;
+  color: white;
+  margin-top: 5px;
+}
