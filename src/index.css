@@ -48,7 +48,7 @@ audio::-webkit-media-controls-mute-button{
 
 .sidebar{
   /* background-color: black !important; */
-  margin-top: 60px !important;
+  margin-top: 20px !important;
   background-repeat: repeat-y !important;
   height: 100% !important;
   background-attachment: scroll !important;
@@ -79,4 +79,22 @@ h2{
   font-family: 'Pacifico', cursive !important;
   color: white;
   margin-top: 5px;
+}
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+ .sidebar{
+  margin-left: -25px !important;
+  max-width: 10px !important;
+ }
+ .logo{
+  margin-top: 10px;
+  margin-left: 80px !important;
+  margin-right: 40px !important;
+ }
+ .search_box{
+  margin-top: -50px !important;
+ }
+.song{}
+ 
 }

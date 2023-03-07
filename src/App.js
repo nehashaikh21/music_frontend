@@ -3,10 +3,12 @@ import "./App.css";
 import Songs from "./components/Songs";
 import Playlist from "./components/Playlist";
 import { Routes, Route } from "react-router-dom";
+import SideNavBar from "./components/Sidebar";
 
 function App() {
   const [song, setSong] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [showNav, setShowNav] = useState(true);
 
   useEffect(() => {
     setLoading(true);
@@ -28,8 +30,24 @@ function App() {
   return (
     <div className="App">
       <Routes>
+        <Route
+          render={({ location, history }) => (
+            <>
+              <SideNavBar
+                show={showNav}
+                location={location}
+                history={history}
+              />
+              {/* <Route path="/" exact component={(props) => <Songs />} />
+              <Route path="/home" exact component={(props) => <Songs />} />
+              <Route path="/recent" exact component={(props) => <Songs />} />
+              <Route path="/playlist" component={(props) => <Playlist />} /> */}
+            </>
+          )}
+        />
         <Route path="/" element={<Songs song={song} />}></Route>
-        <Route path="/playlist" element={<Playlist />}></Route>
+        <Route path="/home" element={<Songs song={song} />} />
+        <Route path="/playlist" element={<Playlist song={song} />}></Route>
       </Routes>
     </div>
   );

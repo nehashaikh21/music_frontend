@@ -1,5 +1,6 @@
 import React from "react";
 import "@trendmicro/react-sidenav/dist/react-sidenav.css";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import SideNav, {
   Toggle,
@@ -9,31 +10,26 @@ import SideNav, {
   NavText,
 } from "@trendmicro/react-sidenav";
 
-class SideNavBar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isVisible: true,
-    };
-  }
+const SideNavBar = ({ location }) => {
+  location = useLocation();
+  const navigate = useNavigate();
 
-  render() {
-    return (
+  return (
+    <React.Fragment>
       <SideNav
         className="sidebar"
-        expanded={this.state.isVisible}
+        expanded="true"
         onSelect={(selected) => {
           const to = "/" + selected;
+          if (location.pathname !== to) {
+            navigate(to);
+          }
         }}
       >
-        {/* <SideNav.Toggle
-          onClick={() => {
-            this.setState({ isVisible: !this.state.isVisible });
-          }}
-        /> */}
+        <SideNav.Toggle />
         <SideNav.Nav
           style={{ paddingTop: "20px", backgroundColor: "#db3d44" }}
-          defaultSelected="home"
+          // defaultSelected="home"
         >
           <NavItem eventKey="home">
             <NavIcon>
@@ -42,7 +38,7 @@ class SideNavBar extends React.Component {
                 width="16"
                 height="16"
                 fill="currentColor"
-                class="bi bi-house-door-fill"
+                className="bi bi-house-door-fill"
                 viewBox="0 0 16 16"
               >
                 <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5z" />
@@ -57,7 +53,7 @@ class SideNavBar extends React.Component {
                 width="16"
                 height="16"
                 fill="currentColor"
-                class="bi bi-file-music"
+                className="bi bi-file-music"
                 viewBox="0 0 16 16"
               >
                 <path d="M10.304 3.13a1 1 0 0 1 1.196.98v1.8l-2.5.5v5.09c0 .495-.301.883-.662 1.123C7.974 12.866 7.499 13 7 13c-.5 0-.974-.134-1.338-.377-.36-.24-.662-.628-.662-1.123s.301-.883.662-1.123C6.026 10.134 6.501 10 7 10c.356 0 .7.068 1 .196V4.41a1 1 0 0 1 .804-.98l1.5-.3z" />
@@ -66,14 +62,14 @@ class SideNavBar extends React.Component {
             </NavIcon>
             <NavText>Recently Played</NavText>
           </NavItem>
-          <NavItem eventKey="playlist">
+          <NavItem eventKey="playlist" href="/playlist">
             <NavIcon>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
                 height="16"
                 fill="currentColor"
-                class="bi bi-music-note-list"
+                className="bi bi-music-note-list"
                 viewBox="0 0 16 16"
               >
                 <path d="M12 13c0 1.105-1.12 2-2.5 2S7 14.105 7 13s1.12-2 2.5-2 2.5.895 2.5 2z" />
@@ -99,8 +95,8 @@ class SideNavBar extends React.Component {
           <NavItem></NavItem>
         </SideNav.Nav>
       </SideNav>
-    );
-  }
-}
+    </React.Fragment>
+  );
+};
 
 export default SideNavBar;

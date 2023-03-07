@@ -1,16 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Heart from "react-heart";
 
 const AddToPlaylist = ({ data, songid }) => {
   const [active, setActive] = useState(false);
-  let selected;
+  const [favourites, setFavourites] = useState([]);
+
+  let selected = [];
+
+  const saveToLocalStorage = (items) => {
+    localStorage.setItem("add-to-playlist", JSON.stringify(items));
+  };
 
   const handleClick = () => {
     setActive(!active);
     const playlistData = data.filter((object) => object.id == songid);
-    selected = playlistData;
+    selected.push(playlistData);
+    selected.concat();
+    saveToLocalStorage(playlistData);
     console.log(selected);
   };
+
   return (
     <>
       <div className="heart">
