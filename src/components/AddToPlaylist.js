@@ -16,11 +16,13 @@ const AddToPlaylist = ({ data, songid }) => {
     saveToLocalStorage(playlistData);
   };
 
+  const favSongs = JSON.parse(localStorage.getItem("add-to-playlist"));
+
   return (
     <>
       <div className="heart">
         <Heart
-          isActive={active}
+          isActive={selected ? active : !active}
           onClick={(event) => handleClick(event, songid)}
           animationScale={1.25}
         />

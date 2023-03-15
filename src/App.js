@@ -4,6 +4,7 @@ import Songs from "./components/Songs";
 import Playlist from "./components/Playlist";
 import { Routes, Route } from "react-router-dom";
 import SideNavBar from "./components/Sidebar";
+import RecentlyPlayed from "./components/RecentlyPlayed";
 
 function App() {
   const [song, setSong] = useState([]);
@@ -48,6 +49,7 @@ function App() {
         <Route path="/" element={<Songs song={song} />}></Route>
         <Route path="/home" element={<Songs song={song} />} />
         <Route path="/playlist" element={<Playlist song={song} />}></Route>
+        <Route path="/recent" element={<RecentlyPlayed song={song} />}></Route>
       </Routes>
     </div>
   );

@@ -1,40 +1,25 @@
-import react, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import Songs from "./Songs";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import SideNavBar from "./Sidebar";
+import Sidebar from "./Sidebar";
 import StickyBox from "react-sticky-box";
 import AddToPlaylist from "./AddToPlaylist";
 
-function Songs(songs) {
-  let songdata = songs.song;
+const RecentlyPlayed = (data) => {
+  let playlistData;
+  let favSongs;
+  let songdata = data.song;
+  console.log(songdata);
 
-  const [searchResult, setsearchResult] = useState(songdata);
-  useEffect(() => {
-    setsearchResult(songdata);
-  }, [songdata]);
+  favSongs = JSON.parse(localStorage.getItem("recently-played"));
 
-  const [input, setInput] = useState("");
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-    setInput(e.target.value);
-    songdata = songdata.filter((s) =>
-      s.title.toLowerCase().includes(input.toLowerCase())
-    );
-    setsearchResult(songdata);
-  };
-
-  const saveToLocalStorage = (items) => {
-    localStorage.setItem("recently-played", JSON.stringify(items));
-  };
-
-  const handlePlay = (id) => {
-    const recent = songdata.filter((object) => object.id === id);
-    saveToLocalStorage(recent);
-    console.log(recent);
-  };
+  for (let i = 0; i < favSongs.length; i++) {
+    playlistData = songdata.filter((object) => object.id === favSongs[i].id);
+    console.log(playlistData);
+  }
 
   return (
     <Container>
@@ -45,25 +30,15 @@ function Songs(songs) {
               Music<span>Box</span>
             </h1>
           </div>
-
-          <form onSubmit={handleSearch} className="search_box">
-            <input
-              type="input"
-              placeholder="Search"
-              id="input"
-              value={input}
-              onChange={handleSearch}
-            />
-          </form>
         </div>
       </div>
       <StickyBox>
-        <SideNavBar />
+        <Sidebar />
       </StickyBox>
       <h2 className="font-link">Top Sounds</h2>
       <div>
-        {searchResult &&
-          searchResult.map((sg, i) => {
+        {playlistData &&
+          playlistData.map((sg, i) => {
             return (
               <>
                 <Row key={i} className="song">
@@ -78,7 +53,6 @@ function Songs(songs) {
                       src={sg.url}
                       controls
                       controlsList="nodownload noplaybackrate nomute  noplaybackrate"
-                      onPlaying={handlePlay(sg.id)}
                     />
                   </Col>
                   <Col>
@@ -107,6 +81,6 @@ function Songs(songs) {
       </div>
     </Container>
   );
-}
+};
 
-export default Songs;
+export default RecentlyPlayed;
