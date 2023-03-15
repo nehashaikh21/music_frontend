@@ -6,21 +6,25 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Sidebar from "./Sidebar";
 import StickyBox from "react-sticky-box";
-import AddToPlaylist from "./AddToPlaylist";
+import RemoveFromPlaylist from "./RemoveFromPlaylist";
 
 const Playlist = (data) => {
-  const [favourites, setFavourites] = useState([]);
   let playlistData;
   let favSongs;
   let songdata = data.song;
   console.log(songdata);
+  const [visible, setVisible] = useState(true);
 
   favSongs = JSON.parse(localStorage.getItem("add-to-playlist"));
 
-  playlistData = songdata.filter((object) => object.id === favSongs[0].id);
-  console.log(playlistData);
+  for (let i = 0; i < favSongs.length; i++) {
+    playlistData = songdata.filter((object) => object.id === favSongs[i].id);
+    console.log(playlistData);
+  }
 
-  const removeFromPlaylist = () => {};
+  const removeFromPlaylist = () => {
+    setVisible(false);
+  };
 
   return (
     <Container>
@@ -38,7 +42,7 @@ const Playlist = (data) => {
       </StickyBox>
       <h2 className="font-link">Top Sounds</h2>
       <div>
-        {playlistData &&
+        {visible &&
           playlistData.map((sg, i) => {
             return (
               <>
@@ -58,7 +62,7 @@ const Playlist = (data) => {
                   </Col>
                   <Col>
                     <div onClick={() => removeFromPlaylist(sg)}>
-                      <AddToPlaylist />
+                      <RemoveFromPlaylist />
                     </div>
                   </Col>
                   <Col>

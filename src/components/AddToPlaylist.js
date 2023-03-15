@@ -3,8 +3,6 @@ import Heart from "react-heart";
 
 const AddToPlaylist = ({ data, songid }) => {
   const [active, setActive] = useState(false);
-  const [favourites, setFavourites] = useState([]);
-
   let selected = [];
 
   const saveToLocalStorage = (items) => {
@@ -13,11 +11,9 @@ const AddToPlaylist = ({ data, songid }) => {
 
   const handleClick = () => {
     setActive(!active);
-    const playlistData = data.filter((object) => object.id == songid);
+    const playlistData = data.filter((object) => object.id === songid);
     selected.push(playlistData);
-    selected.concat();
     saveToLocalStorage(playlistData);
-    console.log(selected);
   };
 
   return (

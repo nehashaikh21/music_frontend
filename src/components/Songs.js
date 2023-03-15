@@ -27,11 +27,6 @@ function Songs(songs) {
     setsearchResult(songdata);
   };
 
-  const addPlaylist = (sng) => {
-    const newPlaylist = [...fav, sng];
-    setFav(newPlaylist);
-  };
-
   return (
     <Container>
       <div className="Header">
@@ -77,7 +72,7 @@ function Songs(songs) {
                     />
                   </Col>
                   <Col>
-                    <div onClick={() => addPlaylist(sg)}>
+                    <div>
                       <AddToPlaylist songid={sg.id} data={songdata} />
                     </div>
                   </Col>
